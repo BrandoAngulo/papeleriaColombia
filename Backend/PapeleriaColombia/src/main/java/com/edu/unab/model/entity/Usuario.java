@@ -5,38 +5,41 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario {
 	@Id
-	@Column(name="id_usuario")
+	@Column(name = "id_usuario")
 	private Integer id;
-	@Column(name="nombre")
+	@Column(name = "nombre")
 	private String nombre;
-	@Column(name="fecha_nacimiento")
+	@Column(name = "fecha_nacimiento")
 	private Date fecha_nacimiento;
-	@Column(name="direccion")
+	@Column(name = "direccion")
 	private String direccion;
-	@Column(name="cedula")
+	@Column(name = "cedula")
 	private Integer cedula;
-	@Column(name="celular")
+	@Column(name = "celular")
 	private Integer celular;
-	@Column(name="correo")
+	@Column(name = "correo")
 	private String correo;
-	@Column(name="id_ciudad")
+	@Column(name = "id_ciudad")
 	private Integer id_ciudad;
-	@Column(name="password")
+	@Column(name = "password")
 	private String password;
-	@Column(name="estado")
+	@Column(name = "estado")
 	private String estado;
-	@Column(name="id_roles")
-	private Integer id_roles;
+	@ManyToOne
+	@JoinColumn(name = "id_roles")
+	private Roles id_roles;
 
 	public Usuario(Integer id, String nombre, Date fecha_nacimiento, String direccion, Integer cedula, Integer celular,
-			String correo, Integer id_ciudad, String password, String estado, Integer id_roles) {
-	
+			String correo, Integer id_ciudad, String password, String estado, Roles id_roles) {
+
 		this.id = id;
 		this.nombre = nombre;
 		this.fecha_nacimiento = fecha_nacimiento;
@@ -51,7 +54,7 @@ public class Usuario {
 	}
 
 	public Usuario() {
-		
+
 	}
 
 	public Integer getId() {
@@ -134,11 +137,11 @@ public class Usuario {
 		this.estado = estado;
 	}
 
-	public Integer getId_roles() {
+	public Roles getId_roles() {
 		return id_roles;
 	}
 
-	public void setId_roles(Integer id_roles) {
+	public void setId_roles(Roles id_roles) {
 		this.id_roles = id_roles;
 	}
 
