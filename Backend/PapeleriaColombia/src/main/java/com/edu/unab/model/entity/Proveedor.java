@@ -23,10 +23,12 @@ public class Proveedor {
 	private String estado;
 
 	public Proveedor() {
+
 	}
 
 	public Proveedor(Integer id_proveedor, Integer nit, String nombre, String direccion, Integer celular,
 			String estado) {
+		super();
 		this.id_proveedor = id_proveedor;
 		this.nit = nit;
 		this.nombre = nombre;
@@ -35,11 +37,11 @@ public class Proveedor {
 		this.estado = estado;
 	}
 
-	public Integer getId_Proveedor() {
+	public Integer getId_proveedor() {
 		return id_proveedor;
 	}
 
-	public void setId_Proveedor(Integer id_proveedor) {
+	public void setId_proveedor(Integer id_proveedor) {
 		this.id_proveedor = id_proveedor;
 	}
 
@@ -85,7 +87,7 @@ public class Proveedor {
 
 	@Override
 	public String toString() {
-		return "Proveedores [id_proveedor=" + id_proveedor + ", nit=" + nit + ", nombre=" + nombre + ", direccion="
+		return "Proveedor [id_proveedor=" + id_proveedor + ", nit=" + nit + ", nombre=" + nombre + ", direccion="
 				+ direccion + ", celular=" + celular + ", estado=" + estado + "]";
 	}
 

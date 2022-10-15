@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.unab.model.entity.Proveedor;
-import com.edu.unab.repository.proveedorRepository;
+import com.edu.unab.repository.ProveedorRepository;
 
 @Service
 public class ProveedorServiceImpl implements ProveedorService {
 
 	@Autowired
-	private proveedorRepository proveedorRepository;
+	private ProveedorRepository proveedorRepository;
 	
 	@Override
 	@Transactional(readOnly = true)

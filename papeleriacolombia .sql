@@ -1,16 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 5.1.3
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2022 a las 03:47:40
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,7 +10,8 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `papeleriacolombia`
---
+CREATE DATABASE papeleriacolombia;
+USE papeleriacolombia;
 
 -- --------------------------------------------------------
 
@@ -102,8 +94,7 @@ CREATE TABLE `proveedor` (
   `nit` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
-  `producto` varchar(45) DEFAULT NULL,
-  `celular` varchar(45) DEFAULT NULL,
+  `celular` bigint(10) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -118,6 +109,16 @@ CREATE TABLE `roles` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id_roles`, `descripcion`) VALUES
+(1, 'Admin'),
+(2, 'Vendedor'),
+(3, 'Cliente'),
+(6, 'Putico');
+
 -- --------------------------------------------------------
 
 --
@@ -130,13 +131,21 @@ CREATE TABLE `usuario` (
   `fecha_nacimiento` date DEFAULT NULL,
   `direccion` varchar(30) DEFAULT NULL,
   `cedula` int(12) DEFAULT NULL,
-  `celular` int(10) DEFAULT NULL,
+  `celular` bigint(12) DEFAULT NULL,
   `correo` varchar(30) DEFAULT NULL,
-  `id_ciudad` int(2) NOT NULL,
+  `id_ciudad` int(2) DEFAULT NULL,
   `password` varchar(200) NOT NULL,
   `estado` enum('ON','OFF') NOT NULL,
-  `id_roles` int(11) NOT NULL
+  `id_roles` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `fecha_nacimiento`, `direccion`, `cedula`, `celular`, `correo`, `id_ciudad`, `password`, `estado`, `id_roles`) VALUES
+(2, 'calim', '1992-01-20', 'cra12#5213', 1234567897, 312345678, 'asdas@as.com', 1, '456778798¨¨¨¨q', 'ON', 1),
+(6, 'ñomo', '1992-02-19', 'cra12#5213', 12362, 312345675, 'asdas@as.com', 1, '456778798**q', 'ON', NULL);
 
 -- --------------------------------------------------------
 
@@ -208,8 +217,8 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `usuario_ciudad_fk` (`id_ciudad`),
-  ADD KEY `FK_roles` (`id_roles`);
+  ADD KEY `FK_roles` (`id_roles`),
+  ADD KEY `usuario_ciudad_fk` (`id_ciudad`);
 
 --
 -- Indices de la tabla `ventas`
@@ -251,13 +260,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
