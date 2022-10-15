@@ -1,4 +1,4 @@
-package com.edu.unab.model.entity;
+/*package com.edu.unab.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -124,3 +124,4 @@ public class Producto {
 	
 
 }
+*/

@@ -9,6 +9,6 @@ public interface CategoriaService {
 	public Iterable<Categoria>findAll();
 	public Optional<Categoria>findById(Integer id);
 	public Categoria save(Categoria c);
-	public Void deleteById(Integer id);
+	public void deleteById(Integer id);
 	
 }
