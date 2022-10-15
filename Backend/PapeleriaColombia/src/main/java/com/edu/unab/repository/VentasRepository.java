@@ -1,5 +1,10 @@
 package com.edu.unab.repository;
 
-public interface VentasRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.edu.unab.model.entity.Ventas;
+
+@Repository
+public interface VentasRepository extends JpaRepository<Ventas, Integer>{
 }
