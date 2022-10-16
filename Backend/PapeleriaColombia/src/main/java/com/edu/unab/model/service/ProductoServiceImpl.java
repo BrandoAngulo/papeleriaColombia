@@ -20,12 +20,13 @@ public class ProductoServiceImpl implements ProductoService {
 	public Iterable<Producto> findAll() {
 		return productoRepository.findAll();
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<Producto> findById(Integer id) {
 		return productoRepository.findById(id);
 	}
+
 
 	@Override
 	@Transactional

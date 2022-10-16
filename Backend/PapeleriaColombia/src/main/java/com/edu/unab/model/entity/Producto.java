@@ -55,65 +55,63 @@ public class Producto {
 		
 	}
 	
+	
 	public Integer getId() {
 		return id;
 	}
-	
-	public Integer setId(Integer id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public String setNombre(String nombre) {
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Double getPrecio() {
 		return precio;
 	}
-	
-	public Double setPrecio(Double precio) {
+
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
+
 	public String getEstado() {
 		return estado;
 	}
-	
-	public String setId(String estado) {
+
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
-	public String setDescripcion(String descripcion) {
+
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
-	public Integer getId_proveedor() {
+
+	public Proveedor getId_proveedor() {
 		return id_proveedor;
 	}
-	
-	public Integer setId_proveedor(Integer id_proveedor) {
+
+	public void setId_proveedor(Proveedor id_proveedor) {
 		this.id_proveedor = id_proveedor;
-		
 	}
-	
-	public Integer getId_categoria() {
+
+	public Categoria getId_categoria() {
 		return id_categoria;
 	}
-	
-	public Integer setId_categoria(Integer id_categoria) {
+
+	public void setId_categoria(Categoria id_categoria) {
 		this.id_categoria = id_categoria;
-		
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Producto [id= " + id + ", nombre= " + nombre + ", precio= " + precio + ", estado="
