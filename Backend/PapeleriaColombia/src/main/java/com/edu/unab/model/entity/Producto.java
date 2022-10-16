@@ -1,7 +1,10 @@
-/*package com.edu.unab.model.entity;
+package com.edu.unab.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,12 +31,11 @@ public class Producto {
 	@ManyToOne
 	@JoinColumn(name = "id_proveedor")
 	
-	//falta la clase Proveedor
 	private Proveedor id_proveedor;	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
-	//falta la clase Categoria
+	
 	private  Categoria id_categoria;
 	
 	public Producto(Integer id, String nombre, Double precio, String estado, String descripcion, Proveedor id_proveedor, Categoria id_categoria ) {
@@ -124,4 +126,3 @@ public class Producto {
 	
 
 }
-*/
