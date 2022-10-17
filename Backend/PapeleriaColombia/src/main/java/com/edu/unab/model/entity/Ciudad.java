@@ -11,13 +11,13 @@ public class Ciudad {
 	@Id
 	@Column(name="id_ciudad") 
 	private Integer id_ciudad;
-	@Column(name="descripcion")
-	private String descripcion;
+	@Column(name="nombre")
+	private String nombre;
 	
-	public Ciudad(Integer id_ciudad, String descripcion) {
+	public Ciudad(Integer id_ciudad, String nombre) {
 	
 		this.id_ciudad = id_ciudad;
-		this.descripcion = descripcion;
+		this.nombre = nombre;
 	}
 
 	public Ciudad() {
@@ -32,17 +32,17 @@ public class Ciudad {
 		this.id_ciudad = id_ciudad;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getnombre() {
+		return nombre;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setnombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	@Override
 	public String toString() {
-		return "Ciudad [id_ciudad=" + id_ciudad + ", descripcion=" + descripcion + "]";
+		return "Ciudad [id_ciudad=" + id_ciudad + ", nombre=" + nombre + "]";
 	}
 	
 	

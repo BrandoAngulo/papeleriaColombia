@@ -15,7 +15,7 @@ import com.edu.unab.model.entity.Ciudad;
 import com.edu.unab.model.service.CiudadService;
 
 @RestControllerAdvice
-@RequestMapping("api/Ciudad")
+@RequestMapping("api/ciudad")
 public class CiudadController {
 
 	@Autowired

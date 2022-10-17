@@ -1,9 +1,20 @@
 package com.edu.unab.model.entity;
 
-public class Categoria {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="categoria")
+public class Categoria {
+	
+	@Id
+	@Column(name="id_categoria")
 	private Integer id_categoria;
+	@Column(name="descripcion")
 	private String descripcion;
+	@Column(name="nombre")
 	private String nombre;
 	
 	public Categoria() {

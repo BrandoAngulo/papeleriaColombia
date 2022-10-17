@@ -1,7 +1,16 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 17-10-2022 a las 03:36:10
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -10,7 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `papeleriacolombia`
-CREATE DATABASE papeleriacolombia;
+CREATE database papeleriacolombia;
 USE papeleriacolombia;
 
 -- --------------------------------------------------------
@@ -25,6 +34,14 @@ CREATE TABLE `categoria` (
   `nombre` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `descripcion`, `nombre`) VALUES
+(1, 'resmas, rollos de papel etc', 'papeleria'),
+(2, 'temperas', 'pintura');
+
 -- --------------------------------------------------------
 
 --
@@ -32,7 +49,7 @@ CREATE TABLE `categoria` (
 --
 
 CREATE TABLE `ciudad` (
-  `id_ciudad` int(2) NOT NULL,
+  `id_ciudad` int(12) NOT NULL,
   `nombre` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,7 +58,8 @@ CREATE TABLE `ciudad` (
 --
 
 INSERT INTO `ciudad` (`id_ciudad`, `nombre`) VALUES
-(1, 'Bogotá');
+(1, 'Bogotá'),
+(2, 'Cali');
 
 -- --------------------------------------------------------
 
@@ -63,9 +81,21 @@ CREATE TABLE `clientes` (
 
 CREATE TABLE `papeleria` (
   `id_papeleria` int(11) NOT NULL,
-  `nit` varchar(45) DEFAULT NULL,
+  `nit` int(12) DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
   `id_ciudad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `papeleria`
+--
+
+INSERT INTO `papeleria` (`id_papeleria`, `nit`, `nombre`, `id_ciudad`) VALUES
+(1, NULL, 'papeleria del norte', 2),
+(3, NULL, 'papeleria del norte', 2),
+(4, NULL, 'papeleria del norte', 2),
+(5, NULL, 'papeleria del norte', 2),
+(6, 114402, 'papeleria del norte', 2);
 
 -- --------------------------------------------------------
 
@@ -78,10 +108,18 @@ CREATE TABLE `productos` (
   `nombre` varchar(45) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
+  `id_categoria` int(11) DEFAULT NULL,
   `estado` enum('ON','OFF') NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `id_proveedor`, `id_categoria`, `estado`, `descripcion`) VALUES
+(1, 'resma', '5500.00', 1, 1, 'ON', 'papeleria'),
+(2, 'tempera', '5500.00', 1, 1, 'ON', 'lleva a la casa');
 
 -- --------------------------------------------------------
 
@@ -97,6 +135,13 @@ CREATE TABLE `proveedor` (
   `celular` bigint(10) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `nit`, `nombre`, `direccion`, `celular`, `estado`) VALUES
+(1, 1233, 'ResmasCol', 'busquela con encuentrla', 311225, 'ON');
 
 -- --------------------------------------------------------
 
@@ -132,11 +177,11 @@ CREATE TABLE `usuario` (
   `direccion` varchar(30) DEFAULT NULL,
   `cedula` int(12) DEFAULT NULL,
   `celular` bigint(12) DEFAULT NULL,
-  `correo` varchar(30) DEFAULT NULL,
-  `id_ciudad` int(2) DEFAULT NULL,
+  `correo` varchar(30) NOT NULL,
+  `id_ciudad` int(12) NOT NULL,
   `password` varchar(200) NOT NULL,
   `estado` enum('ON','OFF') NOT NULL,
-  `id_roles` int(11) DEFAULT NULL
+  `id_roles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -144,8 +189,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `fecha_nacimiento`, `direccion`, `cedula`, `celular`, `correo`, `id_ciudad`, `password`, `estado`, `id_roles`) VALUES
-(2, 'calim', '1992-01-20', 'cra12#5213', 1234567897, 312345678, 'asdas@as.com', 1, '456778798¨¨¨¨q', 'ON', 1),
-(6, 'ñomo', '1992-02-19', 'cra12#5213', 12362, 312345675, 'asdas@as.com', 1, '456778798**q', 'ON', NULL);
+(1, 'MANIA', '1992-01-20', 'cra12#5213', 1234567897, 312345678, 'asdas@as.com', 2, '456778798¨¨¨¨q', 'ON', 3),
+(2, 'manito', '1992-01-20', 'cra12#5213', 1234567897, 312345678, 'correo@as.com', 1, '456778798¨¨¨¨q', 'ON', 1);
 
 -- --------------------------------------------------------
 
@@ -156,9 +201,10 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `fecha_nacimiento`, `direccion`, 
 CREATE TABLE `ventas` (
   `id_ventas` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
+  `cantidad` int(12) DEFAULT NULL,
   `fecha` date NOT NULL,
-  `tipoPago` enum('efectivo','tarjeta') NOT NULL,
-  `valorTotal` int(11) NOT NULL,
+  `tipo_pago` enum('efectivo','tarjeta') DEFAULT NULL,
+  `valor_total` int(11) DEFAULT NULL,
   `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -197,8 +243,8 @@ ALTER TABLE `papeleria`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`),
-  ADD KEY `FK_categoria` (`id_categoria`),
-  ADD KEY `FK_proovedor` (`id_proveedor`);
+  ADD KEY `FK_proovedor` (`id_proveedor`),
+  ADD KEY `FK_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `proveedor`
@@ -217,8 +263,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `FK_roles` (`id_roles`),
-  ADD KEY `usuario_ciudad_fk` (`id_ciudad`);
+  ADD UNIQUE KEY `FKcorreo` (`correo`);
 
 --
 -- Indices de la tabla `ventas`
@@ -236,25 +281,25 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id_ciudad` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_ciudad` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_clientes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_clientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -266,13 +311,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_ventas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ventas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -302,7 +347,7 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `FK_roles` FOREIGN KEY (`id_roles`) REFERENCES `roles` (`id_roles`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ciudad_fk` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
+  ADD CONSTRAINT `FKu_ciudad` FOREIGN KEY (`id_usuario`) REFERENCES `ciudad` (`id_ciudad`);
 
 --
 -- Filtros para la tabla `ventas`

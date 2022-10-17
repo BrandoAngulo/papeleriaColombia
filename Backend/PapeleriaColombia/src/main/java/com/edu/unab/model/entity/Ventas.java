@@ -2,28 +2,46 @@ package com.edu.unab.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="ventas")
 public class Ventas {
-
+	
+	@Id
+	@Column(name="id_ventas")
 	private Integer id_ventas;
-	private Integer id_cliente;
+	@ManyToOne
+	@JoinColumn(name="id_cliente")
+	private Cliente id_cliente;
+	@Column(name="cantidad")
+	private Integer cantidad;
+	@Column(name="fecha")
 	private Date fecha;
-	private String tipoPago;
-	private Integer valorTotal;
-	private Integer id_producto;
+	@Column(name="tipo_pago")
+	private String tipo_pago;
+	@Column(name="valor_total")
+	private Integer valor_total;
+	@ManyToOne
+	@JoinColumn(name="id_producto")
+	private Producto id_producto;
 	
 	public Ventas() {
-		super();
 	}
 
-	public Ventas(Integer id_ventas, Integer id_cliente, Date fecha, String tipoPago, Integer valorTotal,
-			Integer id_producto) {
-		super();
+	public Ventas(Integer id_ventas, Cliente id_cliente, Integer cantidad, Date fecha, String tipo_pago,
+			Integer valor_total, Producto id_producto) {
 		this.id_ventas = id_ventas;
 		this.id_cliente = id_cliente;
+		this.cantidad = cantidad;
 		this.fecha = fecha;
-		this.tipoPago = tipoPago;
-		this.valorTotal = valorTotal;
+		this.tipo_pago = tipo_pago;
+		this.valor_total = valor_total;
 		this.id_producto = id_producto;
 	}
 
@@ -35,12 +53,20 @@ public class Ventas {
 		this.id_ventas = id_ventas;
 	}
 
-	public Integer getId_cliente() {
+	public Cliente getId_cliente() {
 		return id_cliente;
 	}
 
-	public void setId_cliente(Integer id_cliente) {
+	public void setId_cliente(Cliente id_cliente) {
 		this.id_cliente = id_cliente;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public Date getFecha() {
@@ -51,34 +77,35 @@ public class Ventas {
 		this.fecha = fecha;
 	}
 
-	public String getTipoPago() {
-		return tipoPago;
+	public String getTipo_pago() {
+		return tipo_pago;
 	}
 
-	public void setTipoPago(String tipoPago) {
-		this.tipoPago = tipoPago;
+	public void setTipo_pago(String tipo_pago) {
+		this.tipo_pago = tipo_pago;
 	}
 
-	public Integer getValorTotal() {
-		return valorTotal;
+	public Integer getValor_total() {
+		return valor_total;
 	}
 
-	public void setValorTotal(Integer valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setValor_total(Integer valor_total) {
+		this.valor_total = valor_total;
 	}
 
-	public Integer getId_producto() {
+	public Producto getId_producto() {
 		return id_producto;
 	}
 
-	public void setId_producto(Integer id_producto) {
+	public void setId_producto(Producto id_producto) {
 		this.id_producto = id_producto;
 	}
 
 	@Override
 	public String toString() {
-		return "Ventas [id_ventas=" + id_ventas + ", id_cliente=" + id_cliente + ", fecha=" + fecha + ", tipoPago="
-				+ tipoPago + ", valorTotal=" + valorTotal + ", id_producto=" + id_producto + "]";
+		return "Ventas [id_ventas=" + id_ventas + ", id_cliente=" + id_cliente + ", cantidad=" + cantidad + ", fecha="
+				+ fecha + ", tipo_pago=" + tipo_pago + ", valor_total=" + valor_total + ", id_producto=" + id_producto
+				+ "]";
 	}
 
 	

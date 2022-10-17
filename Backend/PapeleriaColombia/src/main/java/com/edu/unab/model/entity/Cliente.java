@@ -1,17 +1,31 @@
 package com.edu.unab.model.entity;
 
-public class Cliente {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="clientes")
+public class Cliente {
+	
+	@Id
+	@Column(name="id_clientes")
 	private Integer id_clientes;
+	@Column(name="estado")
 	private String estado;
-	private Integer id_usuario;
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario id_usuario;
 	
 	public Cliente() {
 		super();
 	}
-	
-	public Cliente(Integer id_clientes, String estado, Integer id_usuario) {
-		super();
+
+	public Cliente(Integer id_clientes, String estado, Usuario id_usuario) {
 		this.id_clientes = id_clientes;
 		this.estado = estado;
 		this.id_usuario = id_usuario;
@@ -33,11 +47,11 @@ public class Cliente {
 		this.estado = estado;
 	}
 
-	public Integer getId_usuario() {
+	public Usuario getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Integer id_usuario) {
+	public void setId_usuario(Usuario id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 
@@ -45,6 +59,5 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [id_clientes=" + id_clientes + ", estado=" + estado + ", id_usuario=" + id_usuario + "]";
 	}
-	
-	
+		
 }

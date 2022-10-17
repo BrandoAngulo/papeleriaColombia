@@ -8,38 +8,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="producto")
+@Table(name = "productos")
 
 public class Producto {
-	
+
 	@Id
 	@Column(name = "id_producto")
 	private Integer id;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "precio")
 	private Double precio;
-	
+
 	@Column(name = "estado")
 	private String estado;
-	
+
 	@Column(name = "descripcion")
 	private String descripcion;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_proveedor")
-	
-	private Proveedor id_proveedor;	
-	
+	private Proveedor id_proveedor;
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
-	
-	private  Categoria id_categoria;
-	
-	public Producto(Integer id, String nombre, Double precio, String estado, String descripcion, Proveedor id_proveedor, Categoria id_categoria ) {
-		
+	private Categoria id_categoria;
+
+	public Producto(Integer id, String nombre, Double precio, String estado, String descripcion, Proveedor id_proveedor,
+			Categoria id_categoria) {
+
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -47,15 +45,13 @@ public class Producto {
 		this.descripcion = descripcion;
 		this.id_proveedor = id_proveedor;
 		this.id_categoria = id_categoria;
-				
-		
+
 	}
-	
+
 	public Producto() {
-		
+
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -114,13 +110,9 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [id= " + id + ", nombre= " + nombre + ", precio= " + precio + ", estado="
-				+ estado + ", descripcion= " + descripcion + ", id_proveedor=" + id_proveedor + ", id_categoria=" + id_categoria + "]";
+		return "Producto [id= " + id + ", nombre= " + nombre + ", precio= " + precio + ", estado=" + estado
+				+ ", descripcion= " + descripcion + ", id_proveedor=" + id_proveedor + ", id_categoria=" + id_categoria
+				+ "]";
 	}
-	
-	
-	
-	
-	
 
 }

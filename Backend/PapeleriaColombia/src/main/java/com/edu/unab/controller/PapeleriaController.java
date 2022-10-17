@@ -15,7 +15,7 @@ import com.edu.unab.model.entity.Papeleria;
 import com.edu.unab.model.service.PapeleriaService;
 
 @RestControllerAdvice
-@RequestMapping("api/Papeleria")
+@RequestMapping("api/papeleria")
 public class PapeleriaController {
 
 	@Autowired
