@@ -1,17 +1,36 @@
 <template>
-  <div id="app">
+  <div class="container">
+    <!-- <router-link to="/">Home</router-link> | -->
+    <!-- //<router-link to="/about">About</router-link> -->
     <nav>
-      <router-link to="/usuario">Usuario</router-link>
+
+      <NavBar />
+
     </nav>
-    <router-view/>
+
+    <div class="contenedor">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style>
+<script>
+import NavBar from '@/components/NavBar.vue'
+
+export default {
+  name: "App",
+  components: {
+    NavBar,
+  }
+}
+</script>
+
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
   color: #2c3e50;
 }
 

@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
-Vue.use(VueRouter)
 
 const routes = [
   {
@@ -19,14 +16,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
+    
     path: '/usuario',
     name: 'usuario',
-    component: ()=> import('../views/UsuarioView.vue')
-  },
-  
+    component: () => import('../views/UsuarioView.vue')
+  }
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(),
   routes
 })
 
