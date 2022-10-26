@@ -2,7 +2,9 @@
   <div class="d-grid gap-2 col-3 mt-4">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Crear usuario
-      <span><font-awesome-icon icon="fa-solid fa-user-plus" /></span>
+      <span>
+        <font-awesome-icon icon="fa-solid fa-user-plus" />
+      </span>
     </button>
 
   </div>
@@ -21,11 +23,12 @@
           <th scope="col">Password</th>
           <th scope="col">Estado</th>
           <!-- <th scope="col">Rol</th> -->
+          <th colspan="2" scope="col">Opcion</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr v-for="usuario in usuarios" :key="usuario.id_usuario">
-          <th scope="row">{{ usuario.id_usuario }}</th>
+        <tr v-for="usuario in usuarios" :key="usuario.id">
+          <th scope="row" @dblclick="eliminar(usuario.id)">{{ usuario.id }}</th>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.fecha_nacimiento }}</td>
           <td>{{ usuario.direccion }}</td>
@@ -36,22 +39,38 @@
           <td>{{ usuario.pass }}</td>
           <td>{{ usuario.estado }}</td>
           <!-- <td>{{ usuario.id_roles.descripcion }}</td> -->
+          <td> <button type="button" class="btn btn-danger">Eliminar </button> <button type="button"
+              class="btn btn-success"> Editar</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-
 </template>
   
 <script>
+import axios from 'axios';
+
 export default {
   name: "ListarUser",
   props: {
     usuarios: {
       type: Array,
-    }
+    },
   },
-  methods: {},
+  methods: {
+    eliminar(id) {
+      axios
+        .delete('http://localhost:3000/api/usuario/' + id)
+        .then((data) => {
+          console.log('res', data);
+        })
+      /* .catch(() => {
+        alert("Usuario eliminado satisfactoriamente");
+      });  */
+      console.log(id);
+    },
+
+  },
 };
 </script>
 

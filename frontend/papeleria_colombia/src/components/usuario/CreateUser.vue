@@ -6,65 +6,66 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="myModal"></button>
                     </div>
                     <div class="modal-body">
 
-                        <form @submit="guardar">
+                        <form @submit.prevent="guardar">
                             <div class="mb-3">
-                                <label for="id_usuario" class="form-label">id</label>
-                                <input type="number" name="id_usuario" class="form-control" id="id_usuario"
-                                    aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">Ingrese el id</div>
+                                <label for="id" class="form-label">id</label>
+                                <input type="number" name="id" class="form-control" id="id"
+                                    aria-describedby="emailHelp" v-model.trim="usuario.id">
+                                <div id="id" class="form-text">Ingrese el id</div>
                             </div>
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre">
+                                <input type="text" class="form-control" id="nombre" v-model.trim="usuario.nombre">
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nacimiento">
+                                <input type="date" class="form-control" id="fecha_nacimiento" v-model.trim="usuario.fecha_nacimiento">
                             </div>
                             <div class="mb-3">
                                 <label for="direccion" class="form-label">Direccion</label>
-                                <input type="text" class="form-control" id="direccion">
+                                <input type="text" class="form-control" id="direccion" v-model.trim="usuario.direccion">
                             </div>
                             <div class="mb-3">
                                 <label for="cedula" class="form-label">Cedula</label>
-                                <input type="number" class="form-control" id="cedula">
+                                <input type="number" class="form-control" id="cedula" v-model.trim="usuario.cedula">
                             </div>
                             <div class="mb-3">
                                 <label for="celular" class="form-label">Celular</label>
-                                <input type="number" class="form-control" id="celular">
+                                <input type="number" class="form-control" id="celular" v-model.trim="usuario.celular">
                             </div>
                             <div class="mb-3">
                                 <label for="correo" class="form-label">Correo</label>
-                                <input type="email" class="form-control" id="correo">
+                                <input type="email" class="form-control" id="correo" v-model.trim="usuario.correo">
                             </div>
-                           <!--  <div class="mb-3">
+                            <!--  <div class="mb-3">
                                 <label for="id_ciudad" class="form-label">Ciudad</label>
                                 <input type="number" class="form-control" id="id_ciudad">
                             </div> -->
                             <div class="mb-3">
                                 <label for="pass" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="pass">
+                                <input type="password" class="form-control" id="pass" v-model.trim="usuario.pass">
                             </div>
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <input type="text" class="form-control" id="estado">
+                                <input type="text" class="form-control" id="estado" v-model.trim="usuario.estado">
                             </div>
-                             <!-- <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="id_roles" class="form-label">Rol</label>
                                 <input type="text" class="form-control" id="id_roles">
                             </div>  -->
-                            <div class="mb-3 form-check">
+                           <!--  <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
+                            </div> -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Guardar</button>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-success">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -79,10 +80,10 @@ import axios from "axios";
 
 export default {
     name: "CreateUser",
-    data: function () {
+    data: () => {
         return {
             usuario: {
-                id_usuario: "",
+                id: "",
                 nombre: "",
                 fecha_nacimiento: "",
                 direccion: "",
@@ -99,26 +100,28 @@ export default {
     methods: {
         guardar() {
             axios
-                .post('http://localhost:3000/api/usuario', this.usuario)
+                .post('http://localhost:3000/api/usuario/', this.usuario)
                 .then((data) => {
-                    console.log('res', data);
+                    'res', data
                     this.$emit("refresh");
                 });
+            console.log(this.usuario);
         },
-/* 
-        eliminar(id) {
-            axios
-                .delete('http://localhost:3000/api/usuario/' + id)
-                .then((data) => {
-                    console.log('res', data);
-                    this.usuario.id_usuario = null;
-                    this.$emit("refresh");
-                })
-                .catch(() => {
-                    alert("Usuario no existe");
-                });
-            console.log(id);
-        }, */
+
+        /* 
+                eliminar(id) {
+                    axios
+                        .delete('http://localhost:3000/api/usuario/' + id)
+                        .then((data) => {
+                            console.log('res', data);
+                            this.usuario.id_usuario = null;
+                            this.$emit("refresh");
+                        })
+                        .catch(() => {
+                            alert("Usuario no existe");
+                        });
+                    console.log(id);
+                }, */
 
     },
 };

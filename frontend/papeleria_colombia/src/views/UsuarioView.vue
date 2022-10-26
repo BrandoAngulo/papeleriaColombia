@@ -1,7 +1,7 @@
 <template>
     <div>
         <ListarUser  :usuarios="usuarios"/>
-        <CreateUser  />
+        <CreateUser  @refresh="refresh" />
     </div>
 </template>
 
@@ -22,13 +22,10 @@ export default {
         this.getUsuarios();
     },
     methods: {
-       /*  refresh() {
+         refresh() {
             this.getUsuarios();
-        }, */
-        async getUsuarios() {
-           /* const usuario = await fetch('http://localhost:3000/api/usuario/listar');
-            const res = await usuario.json();
-            console.log(res); */
+        }, 
+         getUsuarios() {
            axios
                 .get('http://localhost:3000/api/usuario/listar')
                 .then((res) => {
