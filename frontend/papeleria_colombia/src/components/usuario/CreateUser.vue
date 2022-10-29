@@ -104,6 +104,7 @@ export default {
                 .then((data) => {
                     'res', data
                     this.$emit("refresh");
+                    this.$swal("Usuario agregado exitosamente")
                 });
             console.log(this.usuario);
         },

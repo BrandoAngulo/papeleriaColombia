@@ -28,7 +28,7 @@
       </thead>
       <tbody class="table-group-divider">
         <tr v-for="usuario in usuarios" :key="usuario.id">
-          <th scope="row" @dblclick="eliminar(usuario.id)">{{ usuario.id }}</th>
+          <th scope="row">{{ usuario.id }}</th>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.fecha_nacimiento }}</td>
           <td>{{ usuario.direccion }}</td>
@@ -39,8 +39,7 @@
           <td>{{ usuario.pass }}</td>
           <td>{{ usuario.estado }}</td>
           <!-- <td>{{ usuario.id_roles.descripcion }}</td> -->
-          <td> <button type="button" class="btn btn-danger">Eliminar </button> <button type="button"
-              class="btn btn-success"> Editar</button></td>
+          <td> <button type="button" class="btn btn-danger" @click="eliminar(usuario.id)">Eliminar </button></td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +62,12 @@ export default {
         .delete('http://localhost:3000/api/usuario/' + id)
         .then((data) => {
           console.log('res', data);
+          this.$swal.fire({
+            "title":"Eliminado!",
+            "text":"Usuario Eliminado Exitosamente",
+            "icon":"success",
+            "confirmButtonText":"OK!",
+          })
         })
       /* .catch(() => {
         alert("Usuario eliminado satisfactoriamente");
