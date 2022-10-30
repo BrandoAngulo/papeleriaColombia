@@ -6,7 +6,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Creación Usuario</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Factura</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                             id="myModal"></button>
                     </div>
@@ -81,18 +81,17 @@ export default {
         };
     },
     methods: {
+    
         guardar() {
             axios
                 .post('http://localhost:3000/api/ventas', this.venta)
                 .then((data) => {
-                    console.log('res', data);
+                    'res', data
                     this.$emit("refresh");
+                    this.$swal("Venta agregada exitosamente")
                 });
-                console.log(this.venta);
-            },
-        
-                
-
+            console.log(this.usuario);
+        },
     },
 };
 </script>
