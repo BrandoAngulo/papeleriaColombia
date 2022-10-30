@@ -109,21 +109,6 @@ export default {
             console.log(this.usuario);
         },
 
-        /* 
-                eliminar(id) {
-                    axios
-                        .delete('http://localhost:3000/api/usuario/' + id)
-                        .then((data) => {
-                            console.log('res', data);
-                            this.usuario.id_usuario = null;
-                            this.$emit("refresh");
-                        })
-                        .catch(() => {
-                            alert("Usuario no existe");
-                        });
-                    console.log(id);
-                }, */
-
     },
 };
 </script>
