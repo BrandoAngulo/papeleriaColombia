@@ -21,6 +21,11 @@ const routes = [
     name:'proveedor',
     component:()=>import('@/views/ProveedorView.vue')
   },
+  {
+    path:'/categoria',
+    name:'cate-goria',
+    component:()=>import('@/views/CategoriaView.vue')
+  },
 
   {
     
