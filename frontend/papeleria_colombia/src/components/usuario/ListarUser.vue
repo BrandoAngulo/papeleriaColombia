@@ -19,10 +19,10 @@
           <th scope="col">Cedula</th>
           <th scope="col">Celular</th>
           <th scope="col">Correo</th>
-          <!-- <th scope="col">Ciudad</th> -->
+           <th scope="col">Ciudad</th> 
           <th scope="col">Password</th>
           <th scope="col">Estado</th>
-          <!-- <th scope="col">Rol</th> -->
+           <th scope="col">Rol</th> 
           <th colspan="2" scope="col">Opcion</th>
         </tr>
       </thead>
@@ -35,10 +35,10 @@
           <td>{{ usuario.cedula }}</td>
           <td>{{ usuario.celular }}</td>
           <td>{{ usuario.correo }}</td>
-          <!-- <td>{{ usuario.id_ciudad.nombre }}</td> -->
+           <td>{{ usuario.id_ciudad.nombre }}</td> 
           <td>{{ usuario.pass }}</td>
           <td>{{ usuario.estado }}</td>
-          <!-- <td>{{ usuario.id_roles.descripcion }}</td> -->
+           <td>{{ usuario.id_roles.descripcion }}</td> 
           <td> <button type="button" class="btn btn-danger" @click="eliminar(usuario.id)">Eliminar </button></td>
         </tr>
       </tbody>

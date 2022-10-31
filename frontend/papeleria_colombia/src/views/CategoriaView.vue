@@ -25,7 +25,7 @@ methods:{
 
     getCategoria(){
         axios
-        .get("categoria/listar")
+        .get("http://localhost:3000/api/categoria/listar")
         .then((res)=>{
             this.categorias=res.data;
             console.log(this.categorias);

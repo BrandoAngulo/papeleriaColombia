@@ -25,12 +25,12 @@
         <tbody class="table-group-divider">
           <tr v-for="venta in ventas" :key="venta.id_ventas">
             <th scope="row">{{ venta.id_ventas }}</th>
-            <td>{{ venta.id_cliente }}</td>
+            <td>{{ venta.id_cliente.id_usuario.nombre }}</td>
             <td>{{ venta.cantidad }}</td>
             <td>{{ venta.fecha }}</td>
             <td>{{ venta.tipo_pago }}</td>
             <td>{{ venta.valor_total }}</td>
-            <td>{{ }}</td>
+            <td>{{ venta.id_producto.nombre }}</td>
             <td> <button type="button" class="btn btn-danger" @click="eliminar(venta.id_ventas)">Eliminar </button></td>
           </tr>
         </tbody>
