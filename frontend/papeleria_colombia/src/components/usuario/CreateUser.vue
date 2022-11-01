@@ -14,8 +14,8 @@
                         <form @submit.prevent="guardar">
                             <div class="mb-3">
                                 <label for="id" class="form-label">id</label>
-                                <input type="number" name="id" class="form-control" id="id"
-                                    aria-describedby="emailHelp" v-model.trim="usuario.id">
+                                <input type="number" name="id" class="form-control" id="id" aria-describedby="emailHelp"
+                                    v-model.trim="usuario.id">
                                 <div id="id" class="form-text">Ingrese el id</div>
                             </div>
                             <div class="mb-3">
@@ -24,7 +24,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" v-model.trim="usuario.fecha_nacimiento">
+                                <input type="date" class="form-control" id="fecha_nacimiento"
+                                    v-model.trim="usuario.fecha_nacimiento">
                             </div>
                             <div class="mb-3">
                                 <label for="direccion" class="form-label">Direccion</label>
@@ -42,10 +43,15 @@
                                 <label for="correo" class="form-label">Correo</label>
                                 <input type="email" class="form-control" id="correo" v-model.trim="usuario.correo">
                             </div>
-                            <!--  <div class="mb-3">
-                                <label for="id_ciudad" class="form-label">Ciudad</label>
-                                <input type="number" class="form-control" id="id_ciudad">
-                            </div> -->
+                            <div class="form-floating">
+                                <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" v-model="usuario.ciudad">
+                                    <option disabled selected>seleciona la ciudad</option>
+                                    <option value=1>Bogota</option>
+                                    <option value=2>Cali</option>
+                                </select>
+                                <label for="floatingSelect">la ciudad</label>
+                            </div>
                             <div class="mb-3">
                                 <label for="pass" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="pass" v-model.trim="usuario.pass">
@@ -54,14 +60,16 @@
                                 <label for="estado" class="form-label">Estado</label>
                                 <input type="text" class="form-control" id="estado" v-model.trim="usuario.estado">
                             </div>
-                            <!-- <div class="mb-3">
-                                <label for="id_roles" class="form-label">Rol</label>
-                                <input type="text" class="form-control" id="id_roles">
-                            </div>  -->
-                           <!--  <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div> -->
+                            <div class="form-floating">
+                                <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" v-model="usuario.id_roles">
+                                    <option disabled selected>seleciona un rol</option>
+                                    <option value=1>Admin</option>
+                                    <option value=2>Cliente</option>
+                                    <option value=3>Vendedor</option>
+                                </select>
+                                <label for="floatingSelect">seleciona un rol</label>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Cancelar</button>
@@ -90,10 +98,10 @@ export default {
                 cedula: "",
                 celular: "",
                 correo: "",
-                //id_ciudad: "",
+                id_ciudad: "",
                 pass: "",
                 estado: "",
-                //id_roles: ""
+                id_roles: ""
             },
         };
     },
